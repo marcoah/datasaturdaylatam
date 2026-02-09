@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class); //primero crea los roles para usarlos en el UserSeeder
         $this->call(UserSeeder::class);
+
+        //Contenido interno
+        $this->call(TemplateSeeder::class);
     }
 }

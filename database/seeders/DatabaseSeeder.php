@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         //Contenido interno
+        $this->call(CapaSeeder::class);
         $this->call(TemplateSeeder::class);
     }
 }

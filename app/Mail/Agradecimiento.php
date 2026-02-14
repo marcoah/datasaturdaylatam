@@ -12,9 +12,11 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Template;
 use App\Models\User;
 
+use App\Mail\TrackableEmail;
+
 class Agradecimiento extends Mailable
 {
-    use Queueable, SerializesModels;
+    use TrackableEmail, Queueable, SerializesModels;
 
     public function __construct(public User $user, public Template $template)
     {

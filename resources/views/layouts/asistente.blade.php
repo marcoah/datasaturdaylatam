@@ -210,7 +210,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{ Auth::user()->fullname }}</h6>
-                            <span>{{ Auth::user()->job }}</span>
+                            <span>{{ Auth::user()->profile->job }}</span>
                         </li>
 
                         <li>

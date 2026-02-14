@@ -13,7 +13,24 @@ return new class extends Migration
     {
         Schema::create('objetos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->enum('tipo', [
+                'POINT',
+                'LINESTRING',
+                'POLYGON',
+                'MULTIPOINT',
+                'MULTILINESTRING',
+                'MULTIPOLYGON'
+            ])->nullable();
+            $table->string('icono')->default('fa-map-pin');
+            $table->geometry('geometria', 'GEOMETRY', 4326)->nullable();
+            $table->string('archivo')->nullable();
+            $table->text('observaciones')->nullable();
+            $table->json('meta')->nullable();
+            $table->foreignId('capa_id')->constrained('capas')->onDelete('cascade');
             $table->timestamps();
+
+            $table->spatialIndex('geometria');
         });
     }
 

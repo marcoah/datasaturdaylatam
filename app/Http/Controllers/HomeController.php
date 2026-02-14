@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Services\HomeRouter;
 use App\Services\ProfileRouter;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Basico;
+use App\Models\Capa;
 
 class HomeController extends Controller
 {
@@ -36,6 +39,38 @@ class HomeController extends Controller
 
         // Delegate view-routing by role to the HomeRouter service
         return $this->profileRouter->profileViewFor($user);
+    }
+
+    public function settings()
+    {
+        return view('dashboards.settings');
+    }
+
+    public function testMail(Request $request)
+    {
+        $destinatario = $request->destinatario;
+        $preheader = "Correo de prueba desde " . ENV('APP_NAME', '');
+        $asunto = $request->asunto;
+        $mensaje = $request->mensaje;
+        $etiqueta = 'Prueba';
+
+        $header_img = '';
+        $resultado = 'Resultado: ';
+
+        try {
+            Mail::to($destinatario)->send(new Basico($preheader, $header_img, $asunto, $mensaje, $etiqueta));
+            $resultado = $resultado . "Envio a $destinatario: Correcto.";
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('message' => $e->getmessage()));
+        };
+
+        return redirect()->back()->with('success', $resultado);
+    }
+
+    public function mapa_interno()
+    {
+        $capas = Capa::All();
+        return view('mapas.interno', compact('capas'));
     }
 
     public function search($search)

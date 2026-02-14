@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Mail\Events\MessageSent;
+use App\Listeners\LogSentEmail;
+use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::before(function ($user, $ability) {
             return $user->hasRole('super-admin') ? true : null;
         });
+
+        //Event::listen(MessageSent::class, LogSentEmail::class);
     }
 }

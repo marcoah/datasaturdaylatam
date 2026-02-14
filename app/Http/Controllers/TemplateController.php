@@ -103,4 +103,9 @@ class TemplateController extends Controller
     {
         //
     }
+
+    public function historial_show()
+    {
+        //
+    }
 }

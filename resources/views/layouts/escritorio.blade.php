@@ -216,6 +216,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i>
@@ -226,6 +227,18 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+
+                        @can('settings-read')
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('settings') }}">
+                                    <i class="fa-solid fa-wrench fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Settings') }}
+                                </a>
+                            </li>
+                        @endcan
 
                         @can('users-read')
                             <li>
@@ -312,16 +325,35 @@
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="evento-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Lista</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Tus selecciones</span>
-                        </a>
-                    </li>
+                    @can('eventos-lists')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Lista</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('eventos-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Tus selecciones</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('documentos-lists')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Lista de documentos</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('documentos-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Tus documentos</span>
+                            </a>
+                        </li>
+                    @endcan
+
                 </ul>
             </li><!-- End Evento Nav -->
 
@@ -334,16 +366,20 @@
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="hoteles-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Lista Hoteles</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Tus selecciones</span>
-                        </a>
-                    </li>
+                    @can('hoteles-create')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Lista Hoteles</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('hoteles-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Tus selecciones</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li><!-- End Hoteles Nav -->
 
@@ -356,18 +392,22 @@
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="restaurantes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i>
-                            <span>Lista restaurantes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i>
-                            <span>Tus selecciones</span>
-                        </a>
-                    </li>
+                    @can('restaurantes-create')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i>
+                                <span>Lista restaurantes</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('restaurantes-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i>
+                                <span>Tus selecciones</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li><!-- End Restaurantes Nav -->
 
@@ -380,99 +420,133 @@
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="actividades-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Cultura</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Paseos</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Turismo</span>
-                        </a>
-                    </li>
+                    @can('cultura-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Cultura</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('paseos-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Paseos</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('turismo-read')
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-circle"></i><span>Turismo</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li><!-- End Actividades Nav -->
 
-            <li class="nav-heading">Administración</li>
+            {{-- --}}
+            @hasrole(['super-admin', 'admin', 'editor'])
+                <!-- Administracion Nav -->
+                <li class="nav-heading">Administración</li>
 
-            <!-- Maestros Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#productos-nav" data-bs-toggle="collapse"
-                    href="#">
-                    <i class="fa-regular fa-rectangle-list"></i>
-                    <span>Maestros</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="productos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Noticias</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Codigos descuento</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Visitas Nav -->
+                <!-- Maestros Nav -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#productos-nav" data-bs-toggle="collapse"
+                        href="#">
+                        <i class="fa-regular fa-rectangle-list"></i>
+                        <span>Maestros</span>
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="productos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @can('noticias-read')
+                            <li>
+                                <a href="#">
+                                    <i class="bi bi-circle"></i><span>Noticias</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('descuentos-read')
+                            <li>
+                                <a href="#">
+                                    <i class="bi bi-circle"></i><span>Codigos descuento</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li><!-- End Visitas Nav -->
 
-            <!-- Objetos Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#objetos-nav" data-bs-toggle="collapse"
-                    href="#">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Capas & objetos</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="objetos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Listas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Agregar</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Visitas Nav -->
+                <!-- Objetos Nav -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#objetos-nav" data-bs-toggle="collapse"
+                        href="#">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Capas & objetos</span>
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="objetos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @can('capas-read')
+                            <li>
+                                <a href="{{ route('capas.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Listas de capas</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('aplicaciones.mapa_interno') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Mapa interno</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('objetos-read')
+                            <li>
+                                <a href="#">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Listas de objetos</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li><!-- End Visitas Nav -->
 
-            <!-- Correos Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#correos-nav" data-bs-toggle="collapse"
-                    href="#">
-                    <i class="fa-solid fa-envelopes-bulk"></i>
-                    <span>Correos</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="correos-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('templates.index') }}">
-                            <i class="bi bi-circle"></i><span>Plantillas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Historial Envios</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Correos Nav -->
+                <!-- Correos Nav -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#correos-nav" data-bs-toggle="collapse"
+                        href="#">
+                        <i class="fa-solid fa-envelopes-bulk"></i>
+                        <span>Correos</span>
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="correos-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                        @can('correos-read')
+                            <li>
+                                <a href="{{ route('templates.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Plantillas</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('historial-read')
+                            <li>
+                                <a href="{{ route('email-history.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Historial Envios</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li><!-- End Correos Nav -->
 
-            <!-- Profile Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('reportes.index') }}">
-                    <i class="fa-solid fa-chart-area"></i>
-                    <span>Reportes</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
+                @can('reportes-read')
+                    <!-- Reportes Page Nav -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="{{ route('reportes.index') }}">
+                            <i class="fa-solid fa-chart-area"></i>
+                            <span>Reportes</span>
+                        </a>
+                    </li><!-- End Reportes Page Nav -->
+                @endcan
+            @endhasrole
 
         </ul>
     </aside><!-- End Sidebar-->
@@ -488,11 +562,12 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
 

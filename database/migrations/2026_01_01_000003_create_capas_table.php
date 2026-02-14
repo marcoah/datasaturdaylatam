@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('capas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('color')->default('#3388ff'); // Color de la capa en el mapa
+            $table->boolean('visible')->default(true); // Mostrar/ocultar capa
+            $table->text('observaciones')->nullable();
+            $table->json('meta')->nullable();
             $table->timestamps();
         });
     }

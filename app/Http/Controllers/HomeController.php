@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\HomeRouter;
 use App\Services\ProfileRouter;
+use App\Services\SitioRouter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Basico;
@@ -15,12 +16,15 @@ class HomeController extends Controller
 {
     private HomeRouter $homeRouter;
     private ProfileRouter $profileRouter;
+    private SitioRouter $sitioRouter;
 
-    public function __construct(HomeRouter $homeRouter, ProfileRouter $profileRouter)
+
+    public function __construct(HomeRouter $homeRouter, ProfileRouter $profileRouter, SitioRouter $sitioRouter)
     {
         $this->middleware('auth');
         $this->homeRouter = $homeRouter;
         $this->profileRouter = $profileRouter;
+        $this->sitioRouter = $sitioRouter;
     }
 
     public function index()
@@ -69,8 +73,11 @@ class HomeController extends Controller
 
     public function mapa_interno()
     {
-        $capas = Capa::All();
-        return view('mapas.interno', compact('capas'));
+        /** @var User|null $user */
+        $user = Auth::user();
+
+        // Delegate view-routing by role to the HomeRouter service
+        return $this->sitioRouter->sitioViewFor($user);
     }
 
     public function search($search)

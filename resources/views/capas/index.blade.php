@@ -68,18 +68,23 @@
                                         @can('capas-delete')
                                             <a class="btn btn-danger btn-sm" href="" data-bs-toggle="modal"
                                                 data-bs-target="#modalEliminar{{ $capa->id }}" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                                                data-bs-placement="top" title="Eliminar">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
                                         @endcan
                                         <a class="btn btn-primary btn-sm"
                                             href="{{ route('capas.objetos.index', ['capa' => $capa->id]) }}"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Mostrar objetos"><i
-                                                class="fas fa-eye"></i></a>
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Mostrar objetos">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                         <a class="btn btn-success btn-sm" href="{{ route('capas.edit', $capa->id) }}"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Editar capa"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-dark btn-sm" href="{{ route('mostrar.mapa', $capa->id) }}"
-                                            data-toggle="tooltip" data-bs-placement="top" title="Mostrar mapa"><i
-                                                class="fas fa-map-marker-alt"></i></a>
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Editar capa">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-dark btn-sm" href="{{ route('mapa.mostrar', $capa->slug) }}"
+                                            data-toggle="tooltip" data-bs-placement="top" title="Mostrar mapa">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </a>
                                         <button class="btn btn-outline-success"
                                             onclick="window.location.href='{{ route('capas.exportar', $capa->id) }}'">
                                             Exportar a GeoJSON 🌍

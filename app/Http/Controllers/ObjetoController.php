@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Capa;
 use App\Models\Objeto;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ObjetosImport;
+
 use Clickbar\Magellan\Data\Geometries\Point;
 use Clickbar\Magellan\Data\Geometries\Polygon;
 use Clickbar\Magellan\Database\PostgisFunctions\ST;
@@ -17,9 +20,10 @@ use Clickbar\Magellan\IO\Parser\WKT\WKTParser;
 
 class ObjetoController extends Controller
 {
-    public function index($capa)
+    public function index($capaId)
     {
-        $objetos = Objeto::where('capa_id', $capa)->get();
+        $capa = Capa::findOrFail($capaId);
+        $objetos = Objeto::where('capa_id', $capa->id)->get();
         return view('objetos.index', compact('objetos', 'capa'));
     }
 
@@ -174,5 +178,49 @@ class ObjetoController extends Controller
             });
 
         return response()->json($objetos);
+    }
+
+    public function importarExcel(Request $request)
+    {
+        $request->validate([
+            'archivo_excel' => 'required|file|mimes:xlsx,xls,csv|max:5120',
+            'capa_id' => 'required|exists:capas,id',
+        ]);
+
+        try {
+            $import = new ObjetosImport($request->capa_id);
+            Excel::import($import, $request->file('archivo_excel'));
+
+            $errores = $import->getErrores();
+
+            if (count($errores) > 0) {
+                return redirect()->route('objetos.index')
+                    ->with('warning', 'Importación completada con algunos errores.')
+                    ->with('errores', $errores);
+            }
+
+            return redirect()->route('objetos.index')
+                ->with('success', 'Objetos importados exitosamente desde Excel.');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $errores = [];
+
+            foreach ($failures as $failure) {
+                $errores[] = "Fila {$failure->row()}: " . implode(', ', $failure->errors());
+            }
+
+            return redirect()->route('objetos.index')
+                ->with('error', 'Error en la validación del archivo.')
+                ->with('errores', $errores);
+        } catch (\Exception $e) {
+            return redirect()->route('objetos.index')
+                ->with('error', 'Error al importar: ' . $e->getMessage());
+        }
+    }
+
+    public function mostrarImportar($capaId)
+    {
+        $capa = Capa::findOrFail($capaId);
+        return view('objetos.importar', compact('capa'));
     }
 }

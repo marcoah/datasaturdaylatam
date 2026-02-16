@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Noticia;
+use App\Models\Capa;
 use App\Models\User;
 
-class HomeRouter
+class SitioRouter
 {
     /**
      * Decide which view or response the given user should receive for the home page.
@@ -13,7 +13,7 @@ class HomeRouter
      * @param User $user
      * @return string|\Illuminate\Contracts\Support\Renderable
      */
-    public function homeViewFor(User $user)
+    public function sitioViewFor(User $user)
     {
         // Ensure we have an authenticated user (caller should guarantee this, but double-check)
         if (! $user) {
@@ -23,26 +23,18 @@ class HomeRouter
         $roles = $user->getRoleNames();
         $primaryRole = $roles->first();
 
-        // Obtener las últimas 5 noticias publicadas
-        $noticias = Noticia::publicadas()
-            ->recientes()
-            ->take(5)
-            ->get();
-
         if (! $primaryRole) {
             abort(403, 'User does not have any role assigned.');
         }
 
         if ($user->hasAnyRole(['super-admin', 'admin'])) {
-            return view('dashboards.principal', compact('noticias'));
+            $capas = Capa::All();
+            return view('mapas.interno', compact('capas'));
         }
 
-        if ($user->hasRole('ponente')) {
-            return view('dashboards.ponentes.principal', compact('noticias'));
-        }
-
-        if ($user->hasRole('asistente')) {
-            return view('dashboards.asistentes.principal', compact('noticias'));
+        if ($user->hasRole(['ponente', 'asistente'])) {
+            $capas = Capa::All();
+            return view('mapas.interno', compact('capas'));
         }
 
         logger()->warning('HomeRouter::homeViewFor: unexpected role', [

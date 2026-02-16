@@ -129,59 +129,44 @@
                 <!-- News & Updates Traffic -->
                 <div class="card">
                     <div class="card-body pb-0">
-                        <h5 class="card-title">
-                            Noticias &amp; Actualizaciones
-                        </h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">
+                                Noticias &amp; Actualizaciones
+                            </h5>
+                            <a href="{{ route('noticias.publico') }}" class="btn btn-sm btn-outline-primary">
+                                Ver todas
+                            </a>
+                        </div>
 
-                        <div class="news">
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-1.jpg" alt="" />
-                                <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                                <p>
-                                    Sit recusandae non aspernatur laboriosam. Quia enim
-                                    eligendi sed ut harum...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-2.jpg" alt="" />
-                                <h4><a href="#">Quidem autem et impedit</a></h4>
-                                <p>
-                                    Illo nemo neque maiores vitae officiis cum eum turos elan
-                                    dries werona nande...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-3.jpg" alt="" />
-                                <h4>
-                                    <a href="#">Id quia et et ut maxime similique occaecati ut</a>
-                                </h4>
-                                <p>
-                                    Fugiat voluptas vero eaque accusantium eos. Consequuntur
-                                    sed ipsam et totam...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-4.jpg" alt="" />
-                                <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                                <p>
-                                    Qui enim quia optio. Eligendi aut asperiores enim
-                                    repellendusvel rerum cuder...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-5.jpg" alt="" />
-                                <h4>
-                                    <a href="#">Et dolores corrupti quae illo quod dolor</a>
-                                </h4>
-                                <p>
-                                    Odit ut eveniet modi reiciendis. Atque cupiditate libero
-                                    beatae dignissimos eius...
-                                </p>
-                            </div>
+                        <div class="news mt-3">
+                            @forelse($noticias as $noticia)
+                                <div class="post-item clearfix">
+                                    @if ($noticia->imagen)
+                                        <img src="{{ asset('storage/' . $noticia->imagen) }}"
+                                            alt="{{ $noticia->titulo }}" />
+                                    @else
+                                        <img src="{{ asset('assets/img/default-news.jpg') }}"
+                                            alt="{{ $noticia->titulo }}" />
+                                    @endif
+                                    <h4>
+                                        <a href="{{ route('noticias.show', $noticia->id) }}">
+                                            {{ $noticia->titulo }}
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        {{ Str::limit($noticia->contenido, 80) }}
+                                    </p>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar-event me-1"></i>
+                                        {{ $noticia->fecha_publicacion->diffForHumans() }}
+                                    </small>
+                                </div>
+                            @empty
+                                <div class="text-center text-muted py-4">
+                                    <i class="bi bi-newspaper" style="font-size: 2rem;"></i>
+                                    <p class="mt-2">No hay noticias disponibles en este momento</p>
+                                </div>
+                            @endforelse
                         </div>
                         <!-- End sidebar recent posts-->
                     </div>

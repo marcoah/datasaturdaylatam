@@ -49,5 +49,22 @@ class UserSeeder extends Seeder
         $profile->phone = '+541143219876';
         $profile->user_id = $user->id;
         $profile->save();
+
+        $user = new User();
+        $user->firstname = 'Asistente';
+        $user->lastname = 'Prueba';
+        $user->password = Hash::make('prueba1*');
+        $user->email = 'prueba@example.com';
+        $user->save();
+        $user->assignRole('asistente');
+
+        $profile = new Profile();
+        $profile->about = 'Asistente de prueba';
+        $profile->job = 'Asistente';
+        $profile->country = 'Peru';
+        $profile->address = 'Lima';
+        $profile->phone = '+516552364123';
+        $profile->user_id = $user->id;
+        $profile->save();
     }
 }

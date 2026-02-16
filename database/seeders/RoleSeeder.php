@@ -33,7 +33,6 @@ class RoleSeeder extends Seeder
         $permission4 = Permission::create(['name' => 'reportes-read']);
         $permission5 = Permission::create(['name' => 'settings-read']);
 
-
         // Opciones de Evento
         $permission_eventos_C = Permission::create(['name' => 'eventos-create']);
         $permission_eventos_R = Permission::create(['name' => 'eventos-read']);

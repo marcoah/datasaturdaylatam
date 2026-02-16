@@ -342,14 +342,15 @@
                     @can('documentos-lists')
                         <li>
                             <a href="#">
-                                <i class="bi bi-circle"></i><span>Lista de documentos</span>
+                                <i class="bi bi-circle"></i><span>Tu ponencia</span>
                             </a>
                         </li>
                     @endcan
                     @can('documentos-read')
                         <li>
-                            <a href="#">
-                                <i class="bi bi-circle"></i><span>Tus documentos</span>
+                            <a href="{{ route('ponencias.mi-ponencia') }}">
+                                <i class="bi bi-circle"></i>
+                                <span>Mi Ponencia</span>
                             </a>
                         </li>
                     @endcan
@@ -368,15 +369,15 @@
                 <ul id="hoteles-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     @can('hoteles-create')
                         <li>
-                            <a href="#">
+                            <a href="{{ route('capas.index') }}">
                                 <i class="bi bi-circle"></i><span>Lista Hoteles</span>
                             </a>
                         </li>
                     @endcan
                     @can('hoteles-read')
                         <li>
-                            <a href="#">
-                                <i class="bi bi-circle"></i><span>Tus selecciones</span>
+                            <a href="{{ route('mapa.mostrar', 'hoteles') }}">
+                                <i class="bi bi-circle"></i><span>Hoteles</span>
                             </a>
                         </li>
                     @endcan
@@ -394,7 +395,7 @@
                 <ul id="restaurantes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     @can('restaurantes-create')
                         <li>
-                            <a href="#">
+                            <a href="{{ route('capas.index') }}">
                                 <i class="bi bi-circle"></i>
                                 <span>Lista restaurantes</span>
                             </a>
@@ -402,9 +403,8 @@
                     @endcan
                     @can('restaurantes-read')
                         <li>
-                            <a href="#">
-                                <i class="bi bi-circle"></i>
-                                <span>Tus selecciones</span>
+                            <a href="{{ route('mapa.mostrar', 'restaurantes') }}">
+                                <i class="bi bi-circle"></i><span>Restaurantes</span>
                             </a>
                         </li>
                     @endcan
@@ -422,22 +422,25 @@
                 <ul id="actividades-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     @can('cultura-read')
                         <li>
-                            <a href="#">
-                                <i class="bi bi-circle"></i><span>Cultura</span>
+                            <a href="{{ route('mapa.mostrar', 'cultura') }}">
+                                <i class="bi bi-circle"></i>
+                                <span>Cultura</span>
                             </a>
                         </li>
                     @endcan
                     @can('paseos-read')
                         <li>
-                            <a href="#">
-                                <i class="bi bi-circle"></i><span>Paseos</span>
+                            <a href="{{ route('paseos.index') }}">
+                                <i class="bi bi-circle"></i>
+                                <span>Paseos</span>
                             </a>
                         </li>
                     @endcan
                     @can('turismo-read')
                         <li>
-                            <a href="#">
-                                <i class="bi bi-circle"></i><span>Turismo</span>
+                            <a href="{{ route('mapa.mostrar', 'turismo') }}">
+                                <i class="bi bi-circle"></i>
+                                <span>Turismo</span>
                             </a>
                         </li>
                     @endcan
@@ -460,15 +463,25 @@
                     <ul id="productos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         @can('noticias-read')
                             <li>
-                                <a href="#">
-                                    <i class="bi bi-circle"></i><span>Noticias</span>
+                                <a href="{{ route('noticias.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Noticias</span>
                                 </a>
                             </li>
                         @endcan
                         @can('descuentos-read')
                             <li>
-                                <a href="#">
-                                    <i class="bi bi-circle"></i><span>Codigos descuento</span>
+                                <a href="{{ route('descuentos.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Codigos descuento</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('ponencias-read')
+                            <li>
+                                <a href="{{ route('ponencias.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Ponencias</span>
                                 </a>
                             </li>
                         @endcan
@@ -495,14 +508,6 @@
                                 <a href="{{ route('aplicaciones.mapa_interno') }}">
                                     <i class="bi bi-circle"></i>
                                     <span>Mapa interno</span>
-                                </a>
-                            </li>
-                        @endcan
-                        @can('objetos-read')
-                            <li>
-                                <a href="#">
-                                    <i class="bi bi-circle"></i>
-                                    <span>Listas de objetos</span>
                                 </a>
                             </li>
                         @endcan

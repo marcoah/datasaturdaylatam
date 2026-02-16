@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Noticia;
+use App\Models\Paseo;
 use App\Models\User;
 
-class HomeRouter
+class PaseoRouter
 {
     /**
      * Decide which view or response the given user should receive for the home page.
@@ -13,7 +13,7 @@ class HomeRouter
      * @param User $user
      * @return string|\Illuminate\Contracts\Support\Renderable
      */
-    public function homeViewFor(User $user)
+    public function paseoViewFor(User $user)
     {
         // Ensure we have an authenticated user (caller should guarantee this, but double-check)
         if (! $user) {
@@ -23,26 +23,21 @@ class HomeRouter
         $roles = $user->getRoleNames();
         $primaryRole = $roles->first();
 
-        // Obtener las últimas 5 noticias publicadas
-        $noticias = Noticia::publicadas()
-            ->recientes()
-            ->take(5)
-            ->get();
-
         if (! $primaryRole) {
             abort(403, 'User does not have any role assigned.');
         }
 
         if ($user->hasAnyRole(['super-admin', 'admin'])) {
-            return view('dashboards.principal', compact('noticias'));
+            $paseos = Paseo::all();
+            return view('paseos.index', compact('paseos'));
         }
 
-        if ($user->hasRole('ponente')) {
-            return view('dashboards.ponentes.principal', compact('noticias'));
-        }
+        if ($user->hasRole(['ponente', 'asistente'])) {
+            $paseos = Paseo::orderBy('fecha_inicio', 'asc')
+                ->orderBy('hora_inicio', 'asc')
+                ->paginate(9); // 9 tarjetas por página (3x3)
 
-        if ($user->hasRole('asistente')) {
-            return view('dashboards.asistentes.principal', compact('noticias'));
+            return view('paseos.menu_paseos', compact('paseos'));
         }
 
         logger()->warning('HomeRouter::homeViewFor: unexpected role', [

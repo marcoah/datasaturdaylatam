@@ -33,15 +33,23 @@
                 <div class="card-header">
                     <div class="d-flex">
                         <div class="p-2 flex-grow-1">
-                            <h4>Objetos en la capa {{ $capa }}</h4>
+                            <h4>Objetos en la capa {{ $capa->nombre }}</h4>
                         </div>
                         <div class="p-2">
-                            <a href="{{ route('capas.objetos.create', ['capa' => $capa]) }}" class="btn btn-primary">
+                            <a href="{{ route('objetos.importar.form', $capa->id) }}" class="btn btn-success">
+                                <i class="bi bi-file-excel"></i> Importar Excel
+                            </a>
+                            <a href="{{ route('capas.objetos.create', ['capa' => $capa->id]) }}" class="btn btn-primary">
                                 <i class="fa fa-plus"></i> Nuevo objeto
                             </a>
                             <a class="btn btn-secondary" href="{{ route('capas.index') }}"> Lista de capas</a>
                         </div>
                     </div>
+
+                    <div class="d-flex gap-2">
+
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">

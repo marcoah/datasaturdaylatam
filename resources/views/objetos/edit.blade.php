@@ -122,7 +122,8 @@
                                                 <label for="latitud" class="control-label">latitud</label>
                                                 <input id="latitud" type="text"
                                                     class="form-control{{ $errors->has('latitud') ? ' is-invalid' : '' }}"
-                                                    name="latitud" value="{{ $objeto->posicion->getLatitude() }}" readOnly>
+                                                    name="latitud" value="{{ $objeto->geometria->getLatitude() }}"
+                                                    readOnly>
                                                 {!! $errors->first('latitud', '<span class="invalid-feedback" role="alert">:message</span>') !!}
                                             </div>
                                         </div>
@@ -131,7 +132,7 @@
                                                 <label for="longitud" class="control-label">longitud</label>
                                                 <input id="longitud" type="text"
                                                     class="form-control{{ $errors->has('longitud') ? ' is-invalid' : '' }}"
-                                                    name="longitud" value="{{ $objeto->posicion->getLongitude() }}"
+                                                    name="longitud" value="{{ $objeto->geometria->getLongitude() }}"
                                                     readOnly>
                                                 {!! $errors->first('longitud', '<span class="invalid-feedback" role="alert">:message</span>') !!}
                                             </div>

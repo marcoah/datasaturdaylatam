@@ -1,153 +1,187 @@
 @extends('layouts.escritorio')
 
-@section('styles')
-    <!-- Leaflet CSS -->
-    <link href="{{ asset('assets/vendor/leaflet/leaflet.css') }}" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <style>
-        #map {
-            height: 80vh;
-            width: 100%;
-            border-top: 1px solid #ddd;
-        }
-
-        .upload-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            padding: 10px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #ddd;
-        }
-
-        button {
-            padding: 6px 12px;
-            background-color: #0078ff;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        select,
-        input[type="file"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-    </style>
-@endsection
-
 @section('content')
-    <div class="upload-container">
-        <label for="geojsonFile">📁 Cargar GeoJSON:</label>
-        <input type="file" id="geojsonFile" accept=".geojson,.json" />
 
-        <label for="capaSelect">🗂️ Capa destino:</label>
-        <select id="capaSelect">
-            <option value="">Seleccione una capa</option>
-            @foreach ($capas as $capa)
-                <option value="{{ $capa->id }}">{{ $capa->nombre }}</option>
-            @endforeach
-        </select>
-
-        <button id="btnGuardar" disabled>💾 Guardar en capa</button>
+    <div class="pagetitle">
+        <h1>Importar Objetos desde Excel</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('capas.objetos.index', ['capa' => $capa->id]) }}">Objetos</a>
+                </li>
+                <li class="breadcrumb-item active">Importar</li>
+            </ol>
+        </nav>
     </div>
 
-    <div id="map"></div>
+    <section class="section">
+        <div class="row">
+            <div class="col-12">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('warning'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{ session('warning') }}</strong>
+                        @if (session('errores'))
+                            <ul class="mt-2 mb-0">
+                                @foreach (session('errores') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{ session('error') }}</strong>
+                        @if (session('errores'))
+                            <ul class="mt-2 mb-0">
+                                @foreach (session('errores') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Importar Objetos</h5>
+
+                        <div class="alert alert-info">
+                            <h6 class="alert-heading">
+                                <i class="bi bi-info-circle"></i> Formato del archivo Excel
+                            </h6>
+                            <p class="mb-2">El archivo debe contener las siguientes columnas obligatorias:</p>
+                            <ul class="mb-2">
+                                <li><strong>nombre</strong> - Nombre del objeto (obligatorio)</li>
+                                <li><strong>latitud</strong> - Coordenada latitud (obligatorio, entre -90 y 90)</li>
+                                <li><strong>longitud</strong> - Coordenada longitud (obligatorio, entre -180 y 180)</li>
+                            </ul>
+                            <p class="mb-2">Columnas opcionales:</p>
+                            <ul class="mb-0">
+                                <li><strong>icono</strong> - Clase del ícono (ej: fa-hotel, fa-restaurant)</li>
+                                <li><strong>direccion</strong> - Dirección del objeto</li>
+                                <li><strong>telefono</strong> - Teléfono de contacto</li>
+                                <li><strong>email</strong> - Email de contacto</li>
+                                <li><strong>url</strong> - Sitio web</li>
+                                <li><strong>observaciones</strong> - Notas adicionales</li>
+                                <li><strong>meta</strong> - Datos adicionales en formato JSON</li>
+                            </ul>
+                        </div>
+
+                        <form method="post" action="{{ route('objetos.importar') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="row mb-4">
+                                <label for="capa_id" class="col-sm-3 col-form-label">Capa de Destino</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select @error('capa_id') is-invalid @enderror" id="capa_id"
+                                        name="capa_id" required>
+                                        <option value="{{ $capa->id }}" selected>
+                                            {{ $capa->nombre }}
+                                        </option>
+                                    </select>
+                                    @error('capa_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <div class="form-text">Todos los objetos se importarán a esta capa</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <label for="archivo_excel" class="col-sm-3 col-form-label">Archivo Excel</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control @error('archivo_excel') is-invalid @enderror"
+                                        id="archivo_excel" name="archivo_excel" accept=".xlsx,.xls,.csv" required>
+                                    @error('archivo_excel')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <div class="form-text">Formatos permitidos: XLSX, XLS, CSV. Máximo 5MB</div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="bi bi-upload"></i> Importar Objetos
+                                </button>
+                                <a class="btn btn-secondary btn-lg"
+                                    href="{{ route('capas.objetos.index', ['capa' => $capa->id]) }}">
+                                    <i class="bi bi-x-circle"></i> Cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de estructura del Excel -->
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Ejemplo de Estructura del Excel</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>nombre</th>
+                                        <th>latitud</th>
+                                        <th>longitud</th>
+                                        <th>icono</th>
+                                        <th>direccion</th>
+                                        <th>telefono</th>
+                                        <th>email</th>
+                                        <th>url</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hotel Plaza</td>
+                                        <td>-34.603722</td>
+                                        <td>-58.381592</td>
+                                        <td>fa-hotel</td>
+                                        <td>Av. 9 de Julio 1234</td>
+                                        <td>+54 11 1234-5678</td>
+                                        <td>info@hotelplaza.com</td>
+                                        <td>https://hotelplaza.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Restaurante El Buen Sabor</td>
+                                        <td>-34.607474</td>
+                                        <td>-58.382460</td>
+                                        <td>fa-utensils</td>
+                                        <td>Calle Florida 567</td>
+                                        <td>+54 11 8765-4321</td>
+                                        <td>contacto@buensabor.com</td>
+                                        <td>https://buensabor.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection
-
-@push('scripts')
-    <!-- Leaflet JS -->
-    <script src="{{ asset('assets/vendor/leaflet/leaflet.js') }}"></script>
-
-    <script>
-        let map = L.map('map').setView([10.24, -67.60], 12);
-        let layerGeoJSON = null;
-        let geojsonData = null;
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        // 📂 Cargar archivo
-        document.getElementById('geojsonFile').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const geojson = JSON.parse(e.target.result);
-                    geojsonData = geojson;
-
-                    // Limpiar capa anterior
-                    if (layerGeoJSON) map.removeLayer(layerGeoJSON);
-
-                    // Agregar capa al mapa
-                    layerGeoJSON = L.geoJSON(geojson, {
-                        onEachFeature: function(feature, layer) {
-                            let popup = "";
-                            if (feature.properties) {
-                                for (let key in feature.properties) {
-                                    popup +=
-                                        `<strong>${key}:</strong> ${feature.properties[key]}<br>`;
-                                }
-                            }
-                            layer.bindPopup(popup);
-                        },
-                        style: {
-                            color: "#0078ff",
-                            weight: 2
-                        },
-                        pointToLayer: (f, latlng) => L.marker(latlng)
-                    }).addTo(map);
-
-                    map.fitBounds(layerGeoJSON.getBounds());
-                    document.getElementById('btnGuardar').disabled = false;
-
-                } catch (err) {
-                    alert("❌ El archivo no es un GeoJSON válido.");
-                    console.error(err);
-                }
-            };
-
-            reader.readAsText(file);
-        });
-
-        // 💾 Guardar en capa
-        document.getElementById('btnGuardar').addEventListener('click', function() {
-            const capaId = document.getElementById('capaSelect').value;
-            if (!capaId) {
-                alert("Seleccione una capa antes de guardar.");
-                return;
-            }
-            if (!geojsonData) {
-                alert("No hay datos cargados.");
-                return;
-            }
-
-            axios.post(`/capas/${capaId}/importar-geojson`, {
-                    geojson: geojsonData
-                })
-                .then(response => {
-                    alert("✅ GeoJSON importado correctamente.");
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    alert("⚠️ Error al guardar los datos.");
-                    console.error(error);
-                });
-        });
-    </script>
-@endpush

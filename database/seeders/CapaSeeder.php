@@ -13,26 +13,43 @@ class CapaSeeder extends Seeder
      */
     public function run(): void
     {
-        $capa = new Capa();
-        $capa->nombre = "Hoteles";
-        $capa->color = "#228B22";
-        $capa->visible = true;
-        $capa->observaciones = "Capa de hoteles";
-        $capa->save();
 
-        $capa = new Capa();
-        $capa->nombre = "Restaurantes";
-        $capa->color = "#FF0000";
-        $capa->visible = true;
-        $capa->observaciones = "Capa de restaurantes";
+        $capas = [
+            [
+                'nombre' => 'Hoteles',
+                'slug' => 'hoteles',
+                'observaciones' => 'Hoteles y alojamientos',
+                'color' => '#3388ff',
+                'visible' => true
+            ],
+            [
+                'nombre' => 'Restaurantes',
+                'slug' => 'restaurantes',
+                'observaciones' => 'Restaurantes y gastronomía',
+                'color' => '#ff3333',
+                'visible' => true
+            ],
+            [
+                'nombre' => 'Cultura',
+                'slug' => 'cultura',
+                'observaciones' => 'Lugares culturales',
+                'color' => '#33ff33',
+                'visible' => true
+            ],
+            [
+                'nombre' => 'Turismo',
+                'slug' => 'turismo',
+                'observaciones' => 'Puntos turísticos',
+                'color' => '#ffaa33',
+                'visible' => true
+            ],
+        ];
 
-        $capa->save();
-
-        $capa = new Capa();
-        $capa->nombre = "Cultura";
-        $capa->color = "#FFD700";
-        $capa->visible = true;
-        $capa->observaciones = "Sitios culturales";
-        $capa->save();
+        foreach ($capas as $capa) {
+            Capa::updateOrCreate(
+                ['slug' => $capa['slug']],
+                $capa
+            );
+        }
     }
 }

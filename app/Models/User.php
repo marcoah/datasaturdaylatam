@@ -65,6 +65,13 @@ class User extends Authenticatable
         return $this->hasMany(Ponencia::class);
     }
 
+    public function alertasLeidas()
+    {
+        return $this->belongsToMany(Alerta::class, 'alerta_user')
+            ->withTimestamps()
+            ->withPivot('leida_en');
+    }
+
     public function getFullnameAttribute()
     {
         $fullname = $this->firstname . ' ' . $this->lastname;

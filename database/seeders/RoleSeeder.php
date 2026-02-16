@@ -40,11 +40,21 @@ class RoleSeeder extends Seeder
         $permission_eventos_D = Permission::create(['name' => 'eventos-delete']);
         $permission_eventos_L = Permission::create(['name' => 'eventos-lists']); // ver listas
 
-        $permission_documentos_C = Permission::create(['name' => 'documentos-create']);
-        $permission_documentos_R = Permission::create(['name' => 'documentos-read']);
-        $permission_documentos_U = Permission::create(['name' => 'documentos-update']);
-        $permission_documentos_D = Permission::create(['name' => 'documentos-delete']);
-        $permission_documentos_L = Permission::create(['name' => 'documentos-lists']); // ver listas
+        $permission_ponencias_C = Permission::create(['name' => 'ponencias-create']);
+        $permission_ponencias_R = Permission::create(['name' => 'ponencias-read']);
+        $permission_ponencias_U = Permission::create(['name' => 'ponencias-update']);
+        $permission_ponencias_D = Permission::create(['name' => 'ponencias-delete']);
+        $permission_ponencias_L = Permission::create(['name' => 'ponencias-lists']); // ver listas
+
+        $permission_noticias_C = Permission::create(['name' => 'noticias-create']);
+        $permission_noticias_R = Permission::create(['name' => 'noticias-read']);
+        $permission_noticias_U = Permission::create(['name' => 'noticias-update']);
+        $permission_noticias_D = Permission::create(['name' => 'noticias-delete']);
+
+        $permission_descuentos_C = Permission::create(['name' => 'descuentos-create']);
+        $permission_descuentos_R = Permission::create(['name' => 'descuentos-read']);
+        $permission_descuentos_U = Permission::create(['name' => 'descuentos-update']);
+        $permission_descuentos_D = Permission::create(['name' => 'descuentos-delete']);
 
         // Capas y Objetos
         $permission_turismo_C = Permission::create(['name' => 'turismo-create']);
@@ -83,16 +93,6 @@ class RoleSeeder extends Seeder
         $permission_roles_U = Permission::create(['name' => 'roles-update']);
         $permission_roles_D = Permission::create(['name' => 'roles-delete']);
 
-        $permission_noticias_C = Permission::create(['name' => 'noticias-create']);
-        $permission_noticias_R = Permission::create(['name' => 'noticias-read']);
-        $permission_noticias_U = Permission::create(['name' => 'noticias-update']);
-        $permission_noticias_D = Permission::create(['name' => 'noticias-delete']);
-
-        $permission_descuentos_C = Permission::create(['name' => 'descuentos-create']);
-        $permission_descuentos_R = Permission::create(['name' => 'descuentos-read']);
-        $permission_descuentos_U = Permission::create(['name' => 'descuentos-update']);
-        $permission_descuentos_D = Permission::create(['name' => 'descuentos-delete']);
-
         $permission_capas_C = Permission::create(['name' => 'capas-create']);
         $permission_capas_R = Permission::create(['name' => 'capas-read']);
         $permission_capas_U = Permission::create(['name' => 'capas-update']);
@@ -116,13 +116,22 @@ class RoleSeeder extends Seeder
             $permission3,
             $permission4,
             $permission5,
+            $permission_usuarios_R,
+            $permission_roles_R,
+            $permission_capas_R,
+            $permission_objetos_R,
+            $permission_plantillas_C,
+            $permission_plantillas_R,
+            $permission_plantillas_U,
+            $permission_plantillas_D,
         );
         $roleEditor->givePermissionTo(
             $permission1,
+            $permission_descuentos_R,
         );
         $rolePonente->givePermissionTo(
             $permission_eventos_R,
-            $permission_documentos_R,
+            $permission_ponencias_R,
             $permission_turismo_R,
             $permission_hoteles_R,
             $permission_restaurantes_R,
@@ -132,7 +141,7 @@ class RoleSeeder extends Seeder
         );
         $roleAsistente->givePermissionTo(
             $permission_eventos_R,
-            $permission_documentos_R,
+            $permission_ponencias_R,
             $permission_paseos_R,
             $permission_noticias_R,
         );

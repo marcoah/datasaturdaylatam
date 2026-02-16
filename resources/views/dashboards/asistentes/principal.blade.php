@@ -45,152 +45,122 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Alertas Varias</h5>
+                        <h5 class="card-title">Alertas Importantes</h5>
 
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Primary Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                        @forelse($alertas as $alerta)
+                            <div class="alert alert-{{ $alerta->tipo }} alert-dismissible fade show" role="alert"
+                                data-alerta-id="{{ $alerta->id }}">
+                                <h4 class="alert-heading">{{ $alerta->titulo }}</h4>
+                                <p>{{ $alerta->mensaje }}</p>
 
-                        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Secondary Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                                @if ($alerta->mensaje_adicional)
+                                    <hr>
+                                    <p class="mb-0">{{ $alerta->mensaje_adicional }}</p>
+                                @endif
 
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Success Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Danger Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-warning  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Warning Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Info Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Lignt Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-dark  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Dark Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                                <button type="button" class="btn-close btn-marcar-leida"
+                                    data-alerta-id="{{ $alerta->id }}" aria-label="Close"></button>
+                            </div>
+                        @empty
+                            <div class="alert alert-info" role="alert">
+                                <p class="mb-0">No hay alertas en este momento.</p>
+                            </div>
+                        @endforelse
 
                     </div>
                 </div>
-            </div> <!-- End Center side columns -->
+            </div>
+            <!-- End Center side columns -->
 
             <!-- Right side columns -->
             <div class="col-lg-4">
                 <!-- News & Updates Traffic -->
                 <div class="card">
                     <div class="card-body pb-0">
-                        <h5 class="card-title">
-                            Noticias &amp; Actualizaciones
-                        </h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">
+                                Noticias &amp; Actualizaciones
+                            </h5>
+                            <a href="{{ route('noticias.publico') }}" class="btn btn-sm btn-outline-primary">
+                                Ver todas
+                            </a>
+                        </div>
 
-                        <div class="news">
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-1.jpg" alt="" />
-                                <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                                <p>
-                                    Sit recusandae non aspernatur laboriosam. Quia enim
-                                    eligendi sed ut harum...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-2.jpg" alt="" />
-                                <h4><a href="#">Quidem autem et impedit</a></h4>
-                                <p>
-                                    Illo nemo neque maiores vitae officiis cum eum turos elan
-                                    dries werona nande...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-3.jpg" alt="" />
-                                <h4>
-                                    <a href="#">Id quia et et ut maxime similique occaecati ut</a>
-                                </h4>
-                                <p>
-                                    Fugiat voluptas vero eaque accusantium eos. Consequuntur
-                                    sed ipsam et totam...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-4.jpg" alt="" />
-                                <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                                <p>
-                                    Qui enim quia optio. Eligendi aut asperiores enim
-                                    repellendusvel rerum cuder...
-                                </p>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/news-5.jpg" alt="" />
-                                <h4>
-                                    <a href="#">Et dolores corrupti quae illo quod dolor</a>
-                                </h4>
-                                <p>
-                                    Odit ut eveniet modi reiciendis. Atque cupiditate libero
-                                    beatae dignissimos eius...
-                                </p>
-                            </div>
+                        <div class="news mt-3">
+                            @forelse($noticias as $noticia)
+                                <div class="post-item clearfix">
+                                    @if ($noticia->imagen)
+                                        <img src="{{ asset('storage/' . $noticia->imagen) }}"
+                                            alt="{{ $noticia->titulo }}" />
+                                    @else
+                                        <img src="{{ asset('assets/img/default-news.jpg') }}"
+                                            alt="{{ $noticia->titulo }}" />
+                                    @endif
+                                    <h4>
+                                        <a href="{{ route('noticias.show', $noticia->id) }}">
+                                            {{ $noticia->titulo }}
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        {{ Str::limit($noticia->contenido, 80) }}
+                                    </p>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar-event me-1"></i>
+                                        {{ $noticia->fecha_publicacion->diffForHumans() }}
+                                    </small>
+                                </div>
+                            @empty
+                                <div class="text-center text-muted py-4">
+                                    <i class="bi bi-newspaper" style="font-size: 2rem;"></i>
+                                    <p class="mt-2">No hay noticias disponibles en este momento</p>
+                                </div>
+                            @endforelse
                         </div>
                         <!-- End sidebar recent posts-->
                     </div>
                 </div>
                 <!-- End News & Updates -->
             </div>
+            <!-- End Right side columns -->
         </div>
 
     </section>
 @endsection
 
 @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejar el click en el botón de cerrar alerta
+            document.querySelectorAll('.btn-marcar-leida').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    const alertaId = this.getAttribute('data-alerta-id');
+                    const alertElement = this.closest('.alert');
+
+                    // Marcar como leída en el servidor
+                    fetch(`/alertas/${alertaId}/marcar-leida`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector(
+                                    'meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Cerrar la alerta con animación de Bootstrap
+                                const bsAlert = new bootstrap.Alert(alertElement);
+                                bsAlert.close();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error al marcar alerta como leída:', error);
+                            // Aún así cerrar la alerta visualmente
+                            const bsAlert = new bootstrap.Alert(alertElement);
+                            bsAlert.close();
+                        });
+                });
+            });
+        });
+    </script>
 @endpush

@@ -18,6 +18,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
 
+    //Alertas
+    Route::resource('alertas', App\Http\Controllers\AlertaController::class);
+    Route::patch('alertas/{alerta}/toggle', [App\Http\Controllers\AlertaController::class, 'toggleActiva'])->name('alertas.toggle');
+    Route::post('alertas/{alerta}/marcar-leida', [App\Http\Controllers\AlertaController::class, 'marcarLeida'])->name('alertas.marcar-leida');
+
     //Capas y objetos
     //Route::get('mapa/{id}', [App\Http\Controllers\CapaController::class, 'mostrarmapa'])->name('mostrar.mapa');
     Route::get('/capas/{id}/exportar', [App\Http\Controllers\CapaController::class, 'exportarGeoJSON'])->name('capas.exportar');

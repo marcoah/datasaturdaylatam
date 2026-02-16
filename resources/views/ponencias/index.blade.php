@@ -1,5 +1,9 @@
 @extends('layouts.escritorio')
 
+@section('styles')
+    <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="pagetitle">
         <h1>Ponencias</h1>
@@ -170,36 +174,35 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="btn-group btn-group-sm" role="group">
-                                                    <a href="{{ route('ponencias.show', $ponencia->id) }}"
-                                                        class="btn btn-info" title="Ver">
-                                                        <i class="bi bi-eye"></i>
-                                                    </a>
-                                                    <a href="{{ route('ponencias.edit', $ponencia->id) }}"
-                                                        class="btn btn-warning" title="Editar">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </a>
-                                                    <form action="{{ route('ponencias.toggle', $ponencia->id) }}"
-                                                        method="POST" class="d-inline">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <button type="submit"
-                                                            class="btn btn-{{ $ponencia->aprobada ? 'secondary' : 'success' }}"
-                                                            title="{{ $ponencia->aprobada ? 'Marcar pendiente' : 'Aprobar' }}">
-                                                            <i
-                                                                class="bi bi-{{ $ponencia->aprobada ? 'x-circle' : 'check-circle' }}"></i>
-                                                        </button>
-                                                    </form>
-                                                    <form action="{{ route('ponencias.destroy', $ponencia->id) }}"
-                                                        method="POST" class="d-inline"
-                                                        onsubmit="return confirm('¿Estás seguro de eliminar esta ponencia?')">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" title="Eliminar">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                <a href="{{ route('ponencias.show', $ponencia->id) }}"
+                                                    class="btn btn-primary btn-sm" title="Ver">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a href="{{ route('ponencias.edit', $ponencia->id) }}"
+                                                    class="btn btn-success btn-sm" title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <form action="{{ route('ponencias.toggle', $ponencia->id) }}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="btn btn-{{ $ponencia->aprobada ? 'warning' : 'info' }} btn-sm"
+                                                        title="{{ $ponencia->aprobada ? 'Marcar pendiente' : 'Aprobar' }}">
+                                                        <i
+                                                            class="bi bi-{{ $ponencia->aprobada ? 'x-circle' : 'check-circle' }}"></i>
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('ponencias.destroy', $ponencia->id) }}"
+                                                    method="POST" class="d-inline"
+                                                    onsubmit="return confirm('¿Estás seguro de eliminar esta ponencia?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        title="Eliminar">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty
@@ -275,3 +278,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+@endpush

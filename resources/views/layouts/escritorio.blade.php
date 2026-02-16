@@ -485,6 +485,14 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('alertas-read')
+                            <li>
+                                <a href="{{ route('alertas.index') }}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Alertas</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li><!-- End Visitas Nav -->
 

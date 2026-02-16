@@ -80,25 +80,23 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="btn-group btn-group-sm" role="group">
-                                                    <a href="{{ route('noticias.show', $noticia->id) }}"
-                                                        class="btn btn-info" title="Ver">
-                                                        <i class="bi bi-eye"></i>
-                                                    </a>
-                                                    <a href="{{ route('noticias.edit', $noticia->id) }}"
-                                                        class="btn btn-warning" title="Editar">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </a>
-                                                    <form action="{{ route('noticias.destroy', $noticia->id) }}"
-                                                        method="POST" class="d-inline"
-                                                        onsubmit="return confirm('¿Estás seguro de eliminar esta noticia?')">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" title="Eliminar">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                <a href="{{ route('noticias.show', $noticia->id) }}"
+                                                    class="btn btn-primary btn-sm" title="Ver">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a href="{{ route('noticias.edit', $noticia->id) }}"
+                                                    class="btn btn-success btn-sm" title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <form action="{{ route('noticias.destroy', $noticia->id) }}" method="POST"
+                                                    class="d-inline"
+                                                    onsubmit="return confirm('¿Estás seguro de eliminar esta noticia?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty

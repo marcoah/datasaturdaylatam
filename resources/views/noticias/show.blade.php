@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="border-top pt-4 d-flex gap-2">
-                            <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-warning">
+                            <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-success">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
                             <a href="{{ route('noticias.index') }}" class="btn btn-secondary">

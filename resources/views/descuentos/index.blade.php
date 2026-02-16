@@ -201,37 +201,35 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="btn-group btn-group-sm" role="group">
-                                                    @if (!$descuento->usado)
-                                                        <form action="{{ route('descuentos.toggle', $descuento->id) }}"
-                                                            method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit"
-                                                                class="btn btn-{{ $descuento->activo ? 'warning' : 'success' }}"
-                                                                title="{{ $descuento->activo ? 'Desactivar' : 'Activar' }}">
-                                                                <i
-                                                                    class="bi bi-{{ $descuento->activo ? 'pause' : 'play' }}-circle"></i>
-                                                            </button>
-                                                        </form>
 
-                                                        <form action="{{ route('descuentos.destroy', $descuento->id) }}"
-                                                            method="POST" class="d-inline"
-                                                            onsubmit="return confirm('¿Estás seguro de eliminar este código?')">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"
-                                                                title="Eliminar">
-                                                                <i class="bi bi-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    @else
-                                                        <button class="btn btn-secondary" disabled
-                                                            title="Código ya usado">
-                                                            <i class="bi bi-lock"></i>
+                                                @if (!$descuento->usado)
+                                                    <form action="{{ route('descuentos.toggle', $descuento->id) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="btn btn-{{ $descuento->activo ? 'warning' : 'success' }}"
+                                                            title="{{ $descuento->activo ? 'Desactivar' : 'Activar' }}">
+                                                            <i
+                                                                class="bi bi-{{ $descuento->activo ? 'pause' : 'play' }}-circle"></i>
                                                         </button>
-                                                    @endif
-                                                </div>
+                                                    </form>
+
+                                                    <form action="{{ route('descuentos.destroy', $descuento->id) }}"
+                                                        method="POST" class="d-inline"
+                                                        onsubmit="return confirm('¿Estás seguro de eliminar este código?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger" title="Eliminar">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <button class="btn btn-secondary" disabled title="Código ya usado">
+                                                        <i class="bi bi-lock"></i>
+                                                    </button>
+                                                @endif
+
                                             </td>
                                         </tr>
                                     @empty

@@ -46,83 +46,32 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Alertas Varias</h5>
+                        <h5 class="card-title">Alertas Importantes</h5>
 
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Primary Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                        @forelse($alertas as $alerta)
+                            <div class="alert alert-{{ $alerta->tipo }} alert-dismissible fade show" role="alert"
+                                data-alerta-id="{{ $alerta->id }}">
+                                <h4 class="alert-heading">{{ $alerta->titulo }}</h4>
+                                <p>{{ $alerta->mensaje }}</p>
 
-                        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Secondary Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                                @if ($alerta->mensaje_adicional)
+                                    <hr>
+                                    <p class="mb-0">{{ $alerta->mensaje_adicional }}</p>
+                                @endif
 
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Success Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Danger Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-warning  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Warning Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Info Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-light border-light alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Lignt Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <div class="alert alert-dark  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Dark Heading</h4>
-                            <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum
-                                perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p>
-                            <hr>
-                            <p class="mb-0">Temporibus quis et qui aspernatur laboriosam sit eveniet qui sunt.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                                <button type="button" class="btn-close btn-marcar-leida"
+                                    data-alerta-id="{{ $alerta->id }}" aria-label="Close"></button>
+                            </div>
+                        @empty
+                            <div class="alert alert-info" role="alert">
+                                <p class="mb-0">No hay alertas en este momento.</p>
+                            </div>
+                        @endforelse
 
                     </div>
                 </div>
-            </div> <!-- End Center side columns -->
+            </div>
+            <!-- End Center side columns -->
 
             <!-- Right side columns -->
             <div class="col-lg-4">
@@ -179,4 +128,39 @@
 @endsection
 
 @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejar el click en el botón de cerrar alerta
+            document.querySelectorAll('.btn-marcar-leida').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    const alertaId = this.getAttribute('data-alerta-id');
+                    const alertElement = this.closest('.alert');
+
+                    // Marcar como leída en el servidor
+                    fetch(`/alertas/${alertaId}/marcar-leida`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector(
+                                    'meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Cerrar la alerta con animación de Bootstrap
+                                const bsAlert = new bootstrap.Alert(alertElement);
+                                bsAlert.close();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error al marcar alerta como leída:', error);
+                            // Aún así cerrar la alerta visualmente
+                            const bsAlert = new bootstrap.Alert(alertElement);
+                            bsAlert.close();
+                        });
+                });
+            });
+        });
+    </script>
 @endpush

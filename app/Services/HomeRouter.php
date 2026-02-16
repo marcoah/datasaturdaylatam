@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Alerta;
 use App\Models\Noticia;
 use App\Models\User;
 
@@ -29,20 +30,27 @@ class HomeRouter
             ->take(5)
             ->get();
 
+        // Obtener alertas activas NO LEÍDAS para el usuario actual
+        $alertas = Alerta::activas()
+            ->paraUsuario($user->id)
+            ->noLeidas($user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         if (! $primaryRole) {
             abort(403, 'User does not have any role assigned.');
         }
 
         if ($user->hasAnyRole(['super-admin', 'admin'])) {
-            return view('dashboards.principal', compact('noticias'));
+            return view('dashboards.principal', compact('noticias', 'alertas'));
         }
 
         if ($user->hasRole('ponente')) {
-            return view('dashboards.ponentes.principal', compact('noticias'));
+            return view('dashboards.ponentes.principal', compact('noticias', 'alertas'));
         }
 
         if ($user->hasRole('asistente')) {
-            return view('dashboards.asistentes.principal', compact('noticias'));
+            return view('dashboards.asistentes.principal', compact('noticias', 'alertas'));
         }
 
         logger()->warning('HomeRouter::homeViewFor: unexpected role', [

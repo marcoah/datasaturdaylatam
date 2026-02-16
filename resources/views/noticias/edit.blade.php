@@ -117,7 +117,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="bi bi-save"></i> Actualizar
                                 </button>
-                                <a class="btn btn-secondary btn-lg" href="{{ route('noticias.index') }}">
+                                <a class="btn btn-danger btn-lg" href="{{ route('noticias.index') }}">
                                     <i class="bi bi-x-circle"></i> Cancelar
                                 </a>
                             </div>
@@ -129,3 +129,8 @@
     </section>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+    <script src="{{ asset('assets/js/inicia_tinymce.js') }}"></script>
+@endpush

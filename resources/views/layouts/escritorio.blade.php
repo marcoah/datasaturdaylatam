@@ -339,14 +339,14 @@
                             </a>
                         </li>
                     @endcan
-                    @can('documentos-lists')
+                    @can('ponencias-lists')
                         <li>
                             <a href="#">
                                 <i class="bi bi-circle"></i><span>Tu ponencia</span>
                             </a>
                         </li>
                     @endcan
-                    @can('documentos-read')
+                    @can('ponencias-read')
                         <li>
                             <a href="{{ route('ponencias.mi-ponencia') }}">
                                 <i class="bi bi-circle"></i>

@@ -1,4 +1,4 @@
-Huellas francesas en Buenos Aires
+# Huellas francesas en Buenos Aires
 
 A comienzos del siglo XX, Buenos Aires se ganó el apodo de “París de Sudamérica” gracias a la construcción de grandes palacios inspirados en el clasicismo y el academicismo francés. Muchos de ellos hoy funcionan como embajadas, museos o sedes oficiales, dejando una impronta visible en barrios como Retiro, Recoleta y Palermo.
 

@@ -32,7 +32,6 @@
             <div class="col-lg-10">
                 <form method="post" action="{{ route('alertas.store') }}">
                     @csrf
-
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Nueva Alerta</h5>

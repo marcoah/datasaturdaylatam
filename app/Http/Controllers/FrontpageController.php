@@ -51,6 +51,11 @@ class FrontpageController extends Controller
         return view('frontpage.gallery');
     }
 
+    public function gallerySingle()
+    {
+        return view('frontpage.gallery-single');
+    }
+
     public function terms()
     {
         return view('frontpage.terms');

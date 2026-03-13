@@ -26,6 +26,7 @@ Route::controller(FrontpageController::class)->prefix('')->name('frontpage.')->g
     Route::get('tickets', 'tickets')->name('tickets');
     Route::get('tickets/buy', 'buyTickets')->name('buy-tickets');
     Route::get('gallery', 'gallery')->name('gallery');
+    Route::get('gallery-single', 'gallerySingle')->name('gallery-single');
     Route::get('terms', 'terms')->name('terms');
     Route::get('privacy', 'privacy')->name('privacy');
 });

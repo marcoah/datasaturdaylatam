@@ -14,7 +14,7 @@
                 numquam molestias.</p>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
                     <li class="current">Gallery</li>
                 </ol>
             </nav>
@@ -35,7 +35,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-1.webp') }}" title="Gallery 1"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -47,7 +48,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-2.webp') }}" title="Gallery 2"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -59,7 +61,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-3.webp') }}" title="Gallery 3"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -71,7 +74,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-4.webp') }}" title="Gallery 4"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -83,7 +87,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-5.webp') }}" title="Gallery 5"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -95,7 +100,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-6.webp') }}" title="Gallery 6"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -107,7 +113,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-7.webp') }}" title="Gallery 7"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -119,7 +126,8 @@
                         <div class="gallery-links d-flex align-items-center justify-content-center">
                             <a href="{{ asset('frontpage/assets/img/events/gallery-8.webp') }}" title="Gallery 8"
                                 class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            <a href="{{ route('frontpage.gallery-single') }}" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
                         </div>
                     </div>
                 </div><!-- End Gallery Item -->

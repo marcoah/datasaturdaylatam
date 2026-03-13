@@ -9,32 +9,30 @@
     <div class="page-title dark-background"
         style="background-image: url({{ asset('frontpage/assets/img/events/showcase-9.webp') }});">
         <div class="container position-relative">
-            <h1>Starter Page</h1>
+            <h1>Gallery Single</h1>
             <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda
                 numquam molestias.</p>
             <nav class="breadcrumbs">
                 <ol>
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li class="current">Starter Page</li>
+                    <li class="current">Gallery</li>
                 </ol>
             </nav>
         </div>
     </div><!-- End Page Title -->
 
-    <!-- Starter Section Section -->
-    <section id="starter-section" class="starter-section section">
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section">
 
-        <!-- Section Title -->
-        <div class="container section-title">
-            <h2>Starter Section</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
+        <div class="container-fluid">
 
-        <div class="container">
-            <p>Use this page as a starter for your own custom pages.</p>
+            <div class="row gy-4 justify-content-center">
+
+            </div>
+
         </div>
 
-    </section><!-- /Starter Section Section -->
+    </section><!-- /Gallery Section -->
 @endsection
 
 @push('scripts')

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - Evently Bootstrap Template</title>
+    <title>DataSaturdayLatam Argentina 2026</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -41,17 +41,17 @@
             <a href="{{ url('/') }}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 {{-- <img src="{{ asset('frontpage/assets/img/logo.webp')}}" alt=""> --}}
-                <h1 class="sitename">Evently</h1>
+                <h1 class="sitename">Data Saturday LATAM&nbsp;<br>Argentina 2026</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ url('/') }}" class="active">Home</a></li>
+                    <li><a href="{{ url('/') }}" class="active">Inicio</a></li>
                     <li><a href="{{ route('frontpage.about') }}">About</a></li>
-                    <li><a href="{{ route('frontpage.schedule') }}">Schedule</a></li>
+                    <li><a href="{{ route('frontpage.schedule') }}">Calendario</a></li>
                     <li><a href="{{ route('frontpage.speakers') }}">Speakers</a></li>
                     <li><a href="{{ route('frontpage.venue') }}">Venue</a></li>
-                    <li class="dropdown"><a href="#"><span>More Pages</span> <i
+                    <li class="dropdown"><a href="#"><span>Más paginas</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="{{ route('frontpage.speaker-details') }}">Speaker Details</a></li>
@@ -62,6 +62,7 @@
                             <li><a href="{{ route('frontpage.privacy') }}">Privacy</a></li>
                         </ul>
                     </li>
+                    {{--
                     <li class="dropdown"><a href="#"><span>Dropdown</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
@@ -80,7 +81,7 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a href="{{ route('frontpage.contact') }}">Contact</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -101,11 +102,11 @@
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="{{ url('/') }}" class="logo d-flex align-items-center">
-                        <span class="sitename">Evently</span>
+                        <span class="sitename">Data Saturday LATAM&nbsp;<br>Argentina 2026</span>
                     </a>
                     <div class="footer-contact pt-3">
                         <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
+                        <p>Buenos Aires, Argentina</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
                         <p><strong>Email:</strong> <span>info@example.com</span></p>
                     </div>
@@ -120,44 +121,41 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ route('frontpage.about') }}">About us</a></li>
+                        <li><a href="{{ route('frontpage.schedule') }}">Schedule</a></li>
+                        <li><a href="{{ route('frontpage.speakers') }}">Speakers</a></li>
+                        <li><a href="{{ route('frontpage.privacy') }}">Privacy policy</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Evento</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="{{ route('frontpage.schedule') }}">Schedule</a></li>
+                        <li><a href="{{ route('frontpage.speakers') }}">Speakers</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Hic solutasetp</h4>
+                    <h4>Administracion</h4>
                     <ul>
-                        <li><a href="#">Molestiae accusamus iure</a></li>
-                        <li><a href="#">Excepturi dignissimos</a></li>
-                        <li><a href="#">Suscipit distinctio</a></li>
-                        <li><a href="#">Dilecta</a></li>
-                        <li><a href="#">Sit quas consectetur</a></li>
+                        <li><a href="{{ route('login') }}">Administradores</a></li>
+                        <li><a href="{{ route('login') }}">Ponentes</a></li>
+                        <li><a href="{{ route('login') }}">Voluntarios</a></li>
+                        <li><a href="{{ route('login') }}">Asistentes</a></li>
+                        <li><a href="{{ route('login') }}">Patrocinantes</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Nobis illum</h4>
+                    <h4>Recursos</h4>
                     <ul>
-                        <li><a href="#">Ipsam</a></li>
-                        <li><a href="#">Laudantium dolorum</a></li>
-                        <li><a href="#">Dinera</a></li>
-                        <li><a href="#">Trodelas</a></li>
-                        <li><a href="#">Flexo</a></li>
+                        <li><a href="#">Contactanos</a></li>
+                        <li><a href="#">Repositorios</a></li>
+                        <li><a href="#">Patrocinantes</a></li>
+                        <li><a href="#">Visitantes Internacionales</a></li>
+                        <li><a href="#">Visitantes Nacionales</a></li>
                     </ul>
                 </div>
 
@@ -165,7 +163,7 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">MyWebsite</strong> <span>All Rights
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Marco Hernandez</strong> <span>All Rights
                     Reserved</span></p>
         </div>
 

@@ -49,7 +49,7 @@
                             </ul>
                         </div>
                         <div class="ticket-footer">
-                            <a href="buy-tickets.html" class="btn btn-ticket">Register Now</a>
+                            <a href="{{ route('frontpage.buy-tickets') }}" class="btn btn-ticket">Register Now</a>
                             <p class="availability-info">250 tickets remaining</p>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             </ul>
                         </div>
                         <div class="ticket-footer">
-                            <a href="buy-tickets.html" class="btn btn-ticket">Get VIP Access</a>
+                            <a href="{{ route('frontpage.buy-tickets') }}" class="btn btn-ticket">Get VIP Access</a>
                             <p class="availability-info">Limited to 50 attendees</p>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                             </ul>
                         </div>
                         <div class="ticket-footer">
-                            <a href="buy-tickets.html" class="btn btn-ticket">Student Registration</a>
+                            <a href="{{ route('frontpage.buy-tickets') }}" class="btn btn-ticket">Student Registration</a>
                             <p class="availability-info">Valid student ID required</p>
                         </div>
                     </div>

@@ -20,20 +20,20 @@
 
                         <div class="hero-text">
 
-                            <h1 class="hero-title">Global Executive Leadership&nbsp;<br>Summit 2026</h1>
+                            <h1 class="hero-title">Data Saturday LATAM&nbsp;<br>Argentina 2026</h1>
 
-                            <p class="hero-subtitle">Connect with industry pioneers, explore cutting-edge
-                                strategies, and shape the future of business leadership in an exclusive three-day
-                                experience.</p>
+                            <p class="hero-subtitle"> Participa en este evento internacional de formación técnica,
+                                organizado de manera voluntaria por la comunidad de datos en Latinoamérica, para la
+                                comunidad.</p>
 
                             <div class="event-details">
                                 <div class="detail-item">
                                     <i class="bi bi-calendar-event"></i>
-                                    <span>March 15-17, 2026</span>
+                                    <span>03, 04 y 05 de septiembre de 2026</span>
                                 </div>
                                 <div class="detail-item">
                                     <i class="bi bi-geo-alt"></i>
-                                    <span>Grand Palace Hotel, New York</span>
+                                    <span>Buenos Aires, Argentina </span>
                                 </div>
                             </div>
 
@@ -43,7 +43,7 @@
 
                             <h3 class="countdown-label">Event Starts In</h3>
 
-                            <div class="countdown d-flex justify-content-center" data-count="2026/03/15">
+                            <div class="countdown d-flex justify-content-center" data-count="2026/09/03">
                                 <div>
                                     <h3 class="count-days">239</h3>
                                     <h4>Days</h4>

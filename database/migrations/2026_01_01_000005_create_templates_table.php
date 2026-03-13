@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('button_text')->nullable();
             $table->string('button_link')->nullable();
             $table->string('slug')->nullable();
-            $table->json('tags')->nullable();
             $table->string('mailable_class')->nullable();
+            $table->jsonb('tags')->nullable(); //en Postgres tiene mejoras para busquedas
             $table->timestamps();
         });
     }

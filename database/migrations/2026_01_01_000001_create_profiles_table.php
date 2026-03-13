@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->text('about')->nullable();
+            $table->text('about')->nullable(); // Biografia
             $table->string('company')->nullable();
             $table->string('job')->nullable();
             $table->string('country')->nullable();
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->date('birthday')->nullable();
             $table->text('notes')->nullable();
+            $table->jsonb('tags')->nullable(); //en Postgres tiene mejoras para busquedas
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

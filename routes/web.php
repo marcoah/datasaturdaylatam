@@ -31,7 +31,6 @@ Route::controller(FrontpageController::class)->prefix('')->name('frontpage.')->g
     Route::get('privacy', 'privacy')->name('privacy');
 });
 
-
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

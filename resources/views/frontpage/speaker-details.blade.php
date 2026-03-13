@@ -14,7 +14,7 @@
                 numquam molestias.</p>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}">Inicio</a></li>
                     <li class="current">Speaker Details</li>
                 </ol>
             </nav>
@@ -239,7 +239,7 @@
                                 <i class="bi bi-calendar-plus"></i>
                                 Add to My Schedule
                             </a>
-                            <a href="#" class="btn-secondary">
+                            <a href="{{ route('frontpage.speakers') }}" class="btn-secondary">
                                 <i class="bi bi-arrow-left"></i>
                                 All Speakers
                             </a>

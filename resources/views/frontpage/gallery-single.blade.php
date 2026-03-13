@@ -14,8 +14,8 @@
                 numquam molestias.</p>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li class="current">Gallery</li>
+                    <li><a href="{{ url('/') }}">Inicio</a></li>
+                    <li class="current">Galeria</li>
                 </ol>
             </nav>
         </div>

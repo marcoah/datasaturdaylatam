@@ -18,9 +18,11 @@ return new class extends Migration
             $table->text('descripcion');
             $table->date('fecha_ponencia');
             $table->time('horario_ponencia');
+            $table->string('sala')->nullable();
             $table->enum('nivel', ['basico', 'intermedio', 'avanzado'])->default('intermedio');
             $table->string('archivo')->nullable(); // Ruta del archivo (pptx o pdf)
             $table->boolean('aprobada')->default(false);
+            $table->jsonb('tags')->nullable(); //en Postgres tiene mejoras para busquedas
             $table->timestamps();
 
             // Índices

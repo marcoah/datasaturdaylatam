@@ -23,10 +23,11 @@ return new class extends Migration
                 'MULTIPOLYGON'
             ])->nullable();
             $table->string('icono')->default('fa-map-pin');
-            $table->geometry('geometria', 'GEOMETRY', 4326)->nullable();
+            $table->geography('geometria', 'GEOGRAPHY', 4326)->nullable();
             $table->string('archivo')->nullable();
             $table->text('observaciones')->nullable();
-            $table->json('meta')->nullable();
+            $table->jsonb('meta')->nullable();
+            $table->jsonb('tags')->nullable();
             $table->foreignId('capa_id')->constrained('capas')->onDelete('cascade');
             $table->timestamps();
 

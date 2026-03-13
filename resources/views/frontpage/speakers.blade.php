@@ -52,7 +52,8 @@
                                 <p class="speaker-summary">Exercitation ullamco laboris nisi ut aliquip ex ea
                                     commodo consequat duis aute irure dolor in reprehenderit voluptate.</p>
                                 <div class="speaker-actions">
-                                    <a href="#" class="profile-btn">Full Biography</a>
+                                    <a href="{{ route('frontpage.speaker-details') }}" class="profile-btn">Full
+                                        Biography</a>
                                     <div class="speaker-social">
                                         <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
                                         <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
@@ -84,7 +85,8 @@
                                 <p class="speaker-summary">Sed ut perspiciatis unde omnis iste natus error sit
                                     voluptatem accusantium doloremque laudantium totam rem aperiam.</p>
                                 <div class="speaker-actions">
-                                    <a href="#" class="profile-btn">Full Biography</a>
+                                    <a href="{{ route('frontpage.speaker-details') }}" class="profile-btn">Full
+                                        Biography</a>
                                     <div class="speaker-social">
                                         <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
                                         <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
@@ -116,7 +118,8 @@
                                 <p class="speaker-summary">Nemo enim ipsam voluptatem quia voluptas sit aspernatur
                                     aut odit aut fugit sed quia consequuntur magni dolores.</p>
                                 <div class="speaker-actions">
-                                    <a href="#" class="profile-btn">Full Biography</a>
+                                    <a href="{{ route('frontpage.speaker-details') }}" class="profile-btn">Full
+                                        Biography</a>
                                     <div class="speaker-social">
                                         <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
                                         <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
@@ -148,7 +151,8 @@
                                 <p class="speaker-summary">At vero eos et accusamus et iusto odio dignissimos
                                     ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
                                 <div class="speaker-actions">
-                                    <a href="#" class="profile-btn">Full Biography</a>
+                                    <a href="{{ route('frontpage.speaker-details') }}" class="profile-btn">Full
+                                        Biography</a>
                                     <div class="speaker-social">
                                         <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
                                         <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
@@ -180,7 +184,8 @@
                                 <p class="speaker-summary">Corrupti quos dolores et quas molestias excepturi sint
                                     occaecati cupiditate non provident similique sunt.</p>
                                 <div class="speaker-actions">
-                                    <a href="#" class="profile-btn">Full Biography</a>
+                                    <a href="{{ route('frontpage.speaker-details') }}" class="profile-btn">Full
+                                        Biography</a>
                                     <div class="speaker-social">
                                         <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
                                         <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
@@ -212,7 +217,8 @@
                                 <p class="speaker-summary">Temporibus autem quibusdam et aut officiis debitis aut
                                     rerum necessitatibus saepe eveniet ut et voluptates repudiandae.</p>
                                 <div class="speaker-actions">
-                                    <a href="#" class="profile-btn">Full Biography</a>
+                                    <a href="{{ route('frontpage.speaker-details') }}" class="profile-btn">Full
+                                        Biography</a>
                                     <div class="speaker-social">
                                         <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
                                         <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>

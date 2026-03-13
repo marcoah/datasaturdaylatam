@@ -9,12 +9,12 @@
     <div class="page-title dark-background"
         style="background-image: url({{ asset('frontpage/assets/img/events/showcase-9.webp') }});">
         <div class="container position-relative">
-            <h1>Sponsors</h1>
+            <h1>Patrocinantes</h1>
             <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda
                 numquam molestias.</p>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}">Inicio</a></li>
                     <li class="current">Sponsors</li>
                 </ol>
             </nav>

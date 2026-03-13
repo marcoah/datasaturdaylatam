@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('color')->default('#3388ff'); // Color de la capa en el mapa
             $table->boolean('visible')->default(true); // Mostrar/ocultar capa
             $table->text('observaciones')->nullable();
-            $table->json('meta')->nullable();
+            $table->jsonb('meta')->nullable(); //En postgres jsonb tiene ventajas de rendimiento
+            $table->jsonb('tags')->nullable(); //en Postgres tiene mejoras para busquedas
             $table->timestamps();
         });
     }

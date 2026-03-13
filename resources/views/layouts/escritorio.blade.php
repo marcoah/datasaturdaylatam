@@ -584,10 +584,10 @@
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
 
-    @stack('scripts')
-
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @stack('scripts')
 
 </body>
 

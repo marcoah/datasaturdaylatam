@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FrontpageController;
 
 Route::get('/', function () {
-    return view('auth.login');
+    //return view('auth.login');
+    return view('frontpage.inicio');
 });
 
 Auth::routes();
@@ -12,6 +14,22 @@ Auth::routes();
 Route::get('datosproyecto/{id}', [App\Http\Controllers\ObjetoController::class, 'obtenerDatos']);
 Route::get('datoscapa/{id}', [App\Http\Controllers\CapaController::class, 'obtenerDatosCapa']);
 Route::get('obtenercapas', [App\Http\Controllers\CapaController::class, 'obtenercapas']);
+
+//Frontpage
+Route::controller(FrontpageController::class)->prefix('')->name('frontpage.')->group(function () {
+    Route::get('contact', 'contact')->name('contact');
+    Route::get('about', 'about')->name('about');
+    Route::get('schedule', 'schedule')->name('schedule');
+    Route::get('speakers', 'speakers')->name('speakers');
+    Route::get('venue', 'venue')->name('venue');
+    Route::get('speaker-details', 'speakerDetails')->name('speaker-details');
+    Route::get('tickets', 'tickets')->name('tickets');
+    Route::get('tickets/buy', 'buyTickets')->name('buy-tickets');
+    Route::get('gallery', 'gallery')->name('gallery');
+    Route::get('terms', 'terms')->name('terms');
+    Route::get('privacy', 'privacy')->name('privacy');
+});
+
 
 Route::group(['middleware' => 'auth'], function () {
 

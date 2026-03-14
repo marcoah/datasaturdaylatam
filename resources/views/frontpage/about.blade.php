@@ -49,8 +49,8 @@
                         </div>
 
                         <div class="cta-buttons">
-                            <a href="#" class="btn-primary">View Full Agenda</a>
-                            <a href="#" class="btn-secondary">Meet Our Speakers</a>
+                            <a href="{{ route('frontpage.schedule') }}" class="btn-primary">Ver agenda completa</a>
+                            <a href="{{ route('frontpage.speakers') }}" class="btn-secondary">Conoce a los ponentes</a>
                         </div>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                                 <i class="bi bi-calendar-event"></i>
                             </div>
                             <div class="stat-content">
-                                <h4>3 Days</h4>
-                                <p>Of intensive learning and networking</p>
+                                <h4>3 Dias</h4>
+                                <p>De aprendizaje intensivo y networking</p>
                             </div>
                         </div>
 

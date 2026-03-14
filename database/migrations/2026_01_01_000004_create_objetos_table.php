@@ -23,7 +23,7 @@ return new class extends Migration
                 'MULTIPOLYGON'
             ])->nullable();
             $table->string('icono')->default('fa-map-pin');
-            $table->geography('geometria', 'GEOGRAPHY', 4326)->nullable();
+            $table->geometry('geometria', 'GEOMETRY', 4326)->nullable();
             $table->string('archivo')->nullable();
             $table->text('observaciones')->nullable();
             $table->jsonb('meta')->nullable();
